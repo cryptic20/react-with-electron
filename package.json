@@ -2,7 +2,7 @@
   "name": "lol-app",
   "version": "0.1.0",
   "private": true,
-  "author" : "Sherwin Wyco",
+  "author": "Sherwin Wyco",
   "devDependencies": {
     "electron": "^1.8.4",
     "foreman": "^2.0.0",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "react": "^16.3.1",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.1"
   },
   "homepage": "./",
@@ -25,14 +26,14 @@
     "pack": "build --dir",
     "dist": "npm run build && build",
     "postinstall": "install-app-deps"
-},
-"build": {
+  },
+  "build": {
     "appId": "com.electron.electron-with-create-react-app",
     "win": {
-        "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
+      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
     },
     "directories": {
-        "buildResources": "public"
+      "buildResources": "public"
     }
   }
 }
