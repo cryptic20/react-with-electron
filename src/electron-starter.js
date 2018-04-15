@@ -5,17 +5,22 @@ const {Menu, Tray, app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 
-const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
+const iconName = process.platform === 'win32' ? './assets/icons/windows-icon.png' : './assets/icons/iconTemplate.png';
 const iconpath = path.join(__dirname, iconName);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let loadingScreen, mainWindow, windowsParam = {
+    width : 800,
+    height: 600,
+    frame : false,
+    show  : false,
+};
 
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600, frame: false, icon: iconpath});
+    mainWindow = new BrowserWindow(Object.assign(windowsParam, { icon: iconpath}));
 
     mainWindow.setMinimumSize(400,600);
     // and load the index.html of the app.
@@ -25,6 +30,14 @@ function createWindow() {
             slashes: true
         });
     mainWindow.loadURL(startUrl)
+
+     mainWindow.webContents.on('did-finish-load', () => {
+        mainWindow.show();
+
+        if (loadingScreen) {
+            loadingScreen.close();
+        }
+        });
 
     //system tray icon code
     const appIcon = new Tray(iconpath)
@@ -75,13 +88,30 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
-}
+} //end of function createwindow
+
+function createLoadingScreen(){
+    loadingScreen = new BrowserWindow(Object.assign(windowsParam, {fullscreen : false, modal: true, alwaysOnTop : true, parent: mainWindow}));
+    const loadScreenUrl = process.env.LOAD_SCREEN_URL || url.format({
+            pathname: path.join(__dirname, './assets/components/splash_screen/splash_screen.html'), 
+            protocol: 'file:',
+            slashes: true
+        });
+     loadingScreen.loadURL(loadScreenUrl)
+     loadingScreen.on('closed', () => loadingScreen = null);
+     loadingScreen.webContents.on('did-finish-load', () => {
+     loadingScreen.show();
+});
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-app.on('ready', createWindow)
+app.on('ready', () =>{
+       createLoadingScreen();
+       createWindow();
+});
 
 
 // Quit when all windows are closed.

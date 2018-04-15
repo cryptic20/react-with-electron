@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './assets/css/default.css';
-import WinMenu from './assets/header/windowMenu.js';
-import Navbar from './assets/header/Navbar.js'
+import WinMenu from './assets/components/header/windowMenu.js';
+import Navbar from './assets/components/header/Navbar.js';
+import Body from './assets/components/body/body.js';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <div className="App">
       <WinMenu/>
       <Navbar/>
+      <Body/>
       </div>
     );
   }
