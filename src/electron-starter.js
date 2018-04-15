@@ -11,16 +11,17 @@ const iconpath = path.join(__dirname, iconName);
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let loadingScreen, mainWindow, windowsParam = {
+    title : "FF@20",
     width : 800,
     height: 600,
     frame : false,
     show  : false,
+     icon: iconpath
 };
-
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow(Object.assign(windowsParam, { icon: iconpath}));
+    mainWindow = new BrowserWindow(windowsParam);
 
     mainWindow.setMinimumSize(400,600);
     // and load the index.html of the app.
@@ -68,18 +69,13 @@ function createWindow() {
         mainWindow = null
     })
 
-    mainWindow.on('minimize', function (event) {
-        event.preventDefault()
-        mainWindow.hide()
-    })
-
     mainWindow.on('show', function () {
         appIcon.setHighlightMode('always')
     })
 
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+   // mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -91,8 +87,17 @@ function createWindow() {
 } //end of function createwindow
 
 function createLoadingScreen(){
-    loadingScreen = new BrowserWindow(Object.assign(windowsParam, {fullscreen : false, modal: true, alwaysOnTop : true, parent: mainWindow}));
-    const loadScreenUrl = process.env.LOAD_SCREEN_URL || url.format({
+    loadingScreen = new BrowserWindow({width : 300, 
+        height: 300, 
+        frame : false, 
+        show  : false, 
+        fullscreen : false, 
+        modal: true, 
+        resizable : false, 
+        alwaysOnTop : true, 
+        parent: mainWindow});
+
+    const loadScreenUrl = url.format({
             pathname: path.join(__dirname, './assets/components/splash_screen/splash_screen.html'), 
             protocol: 'file:',
             slashes: true

@@ -1,15 +1,16 @@
 .imagePosition {
-  height: 610px;
-  width: 700px;
+  height: 300px;
+  width: 300px;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
 }
 .imagePosition img { 
- animation: App-logo-spin infinite 1.5s linear;
+ animation: App-logo-spin infinite 2s linear;
   }
 
 p, h1, h2{
+  font-size: 15px;
 	color: #ffffff;
 	text-align: center;
 }
