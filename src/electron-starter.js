@@ -117,12 +117,6 @@ function createLoadingScreen(){
 app.on('ready', () => {
     //register escape key for full screen mode
     const esc = globalShortcut.register('Escape', () =>{
-        //for MacOS
-        if (process.platform === 'darwin') {
-            if(mainWindow.isSimpleFullScreen()){
-                mainWindow.setSimpleFullScreen(false);
-            };
-        };
         //for windows
         if(mainWindow.isMaximized()){
             mainWindow.unmaximize();
