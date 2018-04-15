@@ -1,4 +1,4 @@
-const {Menu, Tray, app, BrowserWindow} = require('electron');
+const {Menu, Tray, app, BrowserWindow, globalShortcut} = require('electron');
 // Module to control application life.
 // Module to create native browser window.
 
@@ -75,7 +75,7 @@ function createWindow() {
 
 
     // Open the DevTools.
-   // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -113,11 +113,36 @@ function createLoadingScreen(){
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-app.on('ready', () =>{
-       createLoadingScreen();
-       createWindow();
+//true if screen is full, false if not
+app.on('ready', () => {
+    //register escape key for full screen mode
+    const esc = globalShortcut.register('Escape', () =>{
+        //for MacOS
+        if (process.platform === 'darwin') {
+            if(mainWindow.isSimpleFullScreen()){
+                mainWindow.setSimpleFullScreen(false);
+            };
+        };
+        //for windows
+        if(mainWindow.isMaximized()){
+            mainWindow.unmaximize();
+
+        }else if(mainWindow.isFullScreen()){
+            mainWindow.setFullScreen(false);
+        };
+    });
+    createLoadingScreen();
+    createWindow();
 });
 
+
+
+app.on('will-quit', function(){
+
+  globalShortcut.unregister('Escape');
+
+  globalShortcut.unregisterAll();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

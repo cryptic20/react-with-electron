@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
 
-
-class Navbar extends Component {
+class Navbar_menu extends Component {
   render() {
     return (
-      <div className="wrapper">
-
-    	
+      <div className="container-fluid">
+      <h1 > navbar</h1>
       </div>
     );
   }
 }
-export default Navbar;
+
+export default Navbar_menu;
