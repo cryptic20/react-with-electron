@@ -16,7 +16,7 @@ let loadingScreen, mainWindow, windowsParam = {
     height: 600,
     frame : false,
     show  : false,
-     icon: iconpath
+    icon: iconpath
 };
 
 function createWindow() {
