@@ -1,0 +1,32 @@
+.imagePosition {
+  height: 300px;
+  width: 300px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.imagePosition img { 
+ animation: App-logo-spin infinite 2s linear;
+  }
+
+p, h1, h2{
+  font-size: 15px;
+	color: #ffffff;
+	text-align: center;
+}
+.authorName{
+	color: #7fdaff;
+	text-align: center;
+	font-family:Bookman, URW Bookman L, serif;
+}
+
+body {
+	background-color: #000000;
+	overflow: hidden;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
