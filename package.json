@@ -1,12 +1,11 @@
 {
-  "name": "lol-app",
+  "name": "Gmail-Text-App",
   "version": "0.1.0",
   "private": true,
   "author": "Sherwin Wyco",
   "devDependencies": {
     "electron": "^1.8.8",
     "foreman": "^3.0.1",
-    "react-bootstrap": "^0.32.4",
     "react-scripts": "^1.1.5"
   },
   "dependencies": {
@@ -22,18 +21,6 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron-start": "node src/electron-wait-react",
-    "react-start": "react-scripts start",
-    "pack": "build --dir",
-    "dist": "npm run build && build",
-    "postinstall": "install-app-deps"
-  },
-  "build": {
-    "appId": "com.electron.electron-with-create-react-app",
-    "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
-    },
-    "directories": {
-      "buildResources": "public"
-    }
+    "react-start": "react-scripts start"
   }
 }
