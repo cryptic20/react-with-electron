@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Body extends Component {
   render() {
     return (
-      <div className="container-fluid">
+      <div>
       <h1> TEST </h1>
       </div>
     );

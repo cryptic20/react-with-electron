@@ -14,9 +14,12 @@ let loadingScreen, mainWindow, windowsParam = {
     title : "FF@20",
     width : 800,
     height: 600,
-    frame : false,
+    frame : true,
     show  : false,
-    icon: iconpath
+    icon: iconpath,
+    webPreferences : {
+      nodeIntegration: false,
+    }
 };
 
 function createWindow() {
@@ -47,7 +50,7 @@ function createWindow() {
 //         mainWindow.show();
 //     }
 // },
-{ 
+{
     label: 'Settings', checked: true, click: function(){
         checked : false;
     }
@@ -87,18 +90,18 @@ function createWindow() {
 } //end of function createwindow
 
 function createLoadingScreen(){
-    loadingScreen = new BrowserWindow({width : 300, 
-        height: 300, 
-        frame : false, 
-        show  : false, 
-        fullscreen : false, 
-        modal: true, 
-        resizable : false, 
-        alwaysOnTop : true, 
+    loadingScreen = new BrowserWindow({width : 300,
+        height: 300,
+        frame : false,
+        show  : false,
+        fullscreen : false,
+        modal: true,
+        resizable : false,
+        alwaysOnTop : true,
         parent: mainWindow});
 
     const loadScreenUrl = url.format({
-            pathname: path.join(__dirname, './assets/components/splash_screen/splash_screen.html'), 
+            pathname: path.join(__dirname, './assets/components/splash_screen/splash_screen.html'),
             protocol: 'file:',
             slashes: true
         });
